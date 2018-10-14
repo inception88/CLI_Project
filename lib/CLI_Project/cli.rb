@@ -52,13 +52,25 @@ class CLIProject::CLI
   end
 
   def print_products(input)
-    if input == 'sale' || input == 'all'
+    if input == 'sale'
       puts ""
       puts "---------- EnterAction Apparel's list of #{input} products ----------"
       puts ""
         CLIProject::Product.all.each.with_index(1) do |product, index|
-          puts "#{index}. #{product.name}"
+          if product.sale_price != product.price
+            puts "#{index}. #{product.name}"
+          end
         end
+      elsif input == 'all'
+        puts ""
+        puts "---------- EnterAction Apparel's list of #{input} products ----------"
+        puts ""
+          CLIProject::Product.all.each.with_index(1) do |product, index|
+            puts "#{index}. #{product.name}"
+          end
+      else
+        puts "Not valid input"
+        start
      end
   end
 
