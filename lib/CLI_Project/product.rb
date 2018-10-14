@@ -4,7 +4,9 @@ class CLI_Project::Product
 
   @@all = []
 
-    self.new(
+  def
+    self.new_from_index_page(product)
+      self.new(
       product.css("p.product-item__title").text,
       "https://www.enteractionapparel.com#{product.css("a").attribute("href").text}",
       )

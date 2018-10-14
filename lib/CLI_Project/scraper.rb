@@ -5,7 +5,6 @@ class CLI_Project::Scraper
   end
 
   def scrape_products_index
-    enteraction_apparel = []
      self.get_page.css("div.product-item__link-wrapper")
   end
 
