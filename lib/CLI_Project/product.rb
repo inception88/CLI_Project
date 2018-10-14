@@ -1,14 +1,12 @@
 class CLI_Project::Product
 
-  attr_accessor :name, :url, :price, :description
+  attr_accessor :name, :url, :price, :sale_price, :description
 
   @@all = []
-  :title => product.css("p.product-item__title").text,
-          :link => product.css("a.product-item__link").attribute("href").text
-  def self.new_from_index_page(r)
+
     self.new(
-      r.css("p.product-item__title").text,
-      "https://www.enteractionapparel.com#{r.css("a").attribute("href").text}",
+      product.css("p.product-item__title").text,
+      "https://www.enteractionapparel.com#{product.css("a").attribute("href").text}",
       )
   end
 
@@ -26,34 +24,16 @@ class CLI_Project::Product
     self.all[id-1]
   end
 
-  def best_dish
-    @best_dish ||= doc.css("div.c-4.nr.nt ul:nth-child(8) li").text
-    # @best_dish ||= doc.xpath("//div[@class='c-4 nr nt']/ul[3]/li").text
+  def price
+    @price ||= doc.css("span.product__price--reg on-sale").text
   end
 
-  def food_style
-    @food_style ||= doc.css("div.c-4.nr.nt ul:nth-child(6) li").text
-    # @food_style ||= doc.xpath("//div[@class='c-4 nr nt']/ul[2]/li").text
-  end
-
-  def contact
-    @contact ||= doc.css("div.c-4.nr.nt ul:nth-child(10) li:nth-child(1)").text.split("+").join(". Tel: +")
-    # @contact ||= doc.xpath("//div[@class='c-4 nr nt']/ul[4]/li[1]").text.split("+").join(". Tel: +")
-  end
-
-  def head_chef
-    @head_chef ||= doc.css("div.c-4.nr.nt ul:nth-child(3) li").text.split(" (pictured)").join("")
-    # @head_chef ||= doc.xpath("//div[@class='c-4 nr nt']/ul[1]/li").text.split(" (pictured)").join("")
-  end
-
-  def website_url
-    @website_url ||= doc.css("div.c-4.nr.nt ul:nth-child(10) li:nth-child(2) a").text
-    # @website_url ||= doc.xpath("//div[@class='c-4 nr nt']/ul[4]/li[2]/a").text
+  def sale_price
+    @sale_price ||= doc.css("span.js-price").text
   end
 
   def description
-    @description ||= doc.css("div.c-8.nl.nt > p:nth-child(6)").text
-    # @description ||= doc.xpath("//div[@class='c-8 nl nt']/p[3]").text
+    @description ||= doc.css("div.product-single__description rte").text
   end
 
   def doc
