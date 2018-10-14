@@ -2,7 +2,8 @@
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/CLI_Project`. To experiment with that code, run `bin/console` for an interactive prompt.
 
-TODO: Delete this and the text above, and describe your gem
+
+This application will create a list of the featured products on EnterActionApparel.com. It will then allow the user to choose a product and get more details about it. The details will include the description and the price.
 
 ## Installation
 
