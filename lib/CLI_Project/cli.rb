@@ -1,7 +1,7 @@
-class CLI_Project::CLI
+class CLIProject::CLI
 
   def call
-    CLI_Project::Scraper.new.make_products
+    CLIProject::Scraper.new.make_products
     puts "Welcome to the EnterAction Apparel featured product list!"
     start
   end
@@ -9,7 +9,7 @@ class CLI_Project::CLI
   def start
     puts ""
     puts "What products would you like to see? Enter 'all' for all products or 'sale' for products on sale."
-    input = gets.strip.to_i.downcase
+    input = gets.strip
 
     print_products(input)
 
@@ -17,7 +17,7 @@ class CLI_Project::CLI
     puts "What product would you like more information on?"
     input = gets.strip
 
-    product = CLI_Project::Product.find(input.to_i)
+    product = CLIProject::Product.find(input.to_i)
 
     print_product(product)
 
@@ -29,7 +29,7 @@ class CLI_Project::CLI
       start
     elsif input == "n"
       puts ""
-      puts "Thank you! Have a great day!"
+      puts "Be sure to check back in later for more amazing products and sales!"
       exit
     else
       puts ""
@@ -56,7 +56,7 @@ class CLI_Project::CLI
       puts ""
       puts "---------- EnterAction Apparel's list of #{input} products ----------"
       puts ""
-        CLI_Project::Product.all.each.with_index do |product, index|
+        CLIProject::Product.all.each.with_index(1) do |product, index|
           puts "#{index}. #{product.name}"
         end
      end

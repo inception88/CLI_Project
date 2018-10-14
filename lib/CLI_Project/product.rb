@@ -1,4 +1,4 @@
-class CLI_Project::Product
+class CLIProject::Product
 
   attr_accessor :name, :url, :price, :sale_price, :description
 
@@ -27,15 +27,15 @@ class CLI_Project::Product
   end
 
   def price
-    @price ||= doc.css("span.product__price--reg on-sale").text
+    @price ||= doc.css("span.product__price--reg").text.strip
   end
 
   def sale_price
-    @sale_price ||= doc.css("span.js-price").text
+    @sale_price ||= doc.css("span.js-price").text.strip
   end
 
   def description
-    @description ||= doc.css("div.product-single__description rte").text
+    @description ||= doc.css("div.product-single__description").text.strip
   end
 
   def doc
