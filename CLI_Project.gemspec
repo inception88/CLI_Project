@@ -25,9 +25,9 @@ Gem::Specification.new do |spec|
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
-  spec.files         = ["lib/CLI_Project.rb", "lib/CLI_Project/cli.rb", "lib/CLI_Project/scraper.rb", "lib/CLI_Project/restaurant.rb", "config/environment.rb"]
+  spec.files         = ["lib/CLI_Project.rb", "lib/CLI_Project/cli.rb", "lib/CLI_Project/scraper.rb", "lib/CLI_Project/product.rb", "config/environment.rb", "bin/console"]
   spec.bindir        = "bin"
-  spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
+  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
   spec.executables << 'enteraction-apparel'
 
