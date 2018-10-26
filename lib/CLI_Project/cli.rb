@@ -19,7 +19,7 @@ class CLIProject::CLI
     binding.pry
     while input2.to_i > CLIProject::Product.all.size || input2.to_i < 1 do
         print_products(input1)
-        puts "Please choose one of the items listed"
+        puts "Please choose from one of the items listed."
         input2 = gets.strip
     end
 
