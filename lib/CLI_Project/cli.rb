@@ -3,22 +3,27 @@ class CLIProject::CLI
   def call
     CLIProject::Scraper.make_products
     puts "Welcome to the EnterAction Apparel featured product list!"
-    binding.pry
     start
   end
 
   def start
     puts ""
     puts "What products would you like to see? Enter 'all' for all products or 'sale' for products on sale."
-    input = gets.strip
+    input1 = gets.strip.downcase
 
-    print_products(input)
+    print_products(input1)
 
     puts ""
     puts "What product would you like more information on?"
-    input = gets.strip
+    input2 = gets.strip
+    binding.pry
+    while input2.to_i > CLIProject::Product.all.size || input2.to_i < 1 do
+        print_products(input1)
+        puts "Please choose one of the items listed"
+        input2 = gets.strip
+    end
 
-    product = CLIProject::Product.find(input.to_i)
+    product = CLIProject::Product.find(input2.to_i)
 
     CLIProject::Scraper.add_product_details(product) if product.price == nil
 
@@ -36,7 +41,7 @@ class CLIProject::CLI
       exit
     else
       puts ""
-      puts "I don't understand that answer."
+      puts 'Not a valid input. Please choose "y" or "n".'
       start
     end
   end
@@ -72,7 +77,7 @@ class CLIProject::CLI
             puts "#{index}. #{product.name}"
           end
       else
-        puts "Not valid input"
+        puts 'Not a valid input. Please choose "all" or "sale".'
         start
      end
   end
