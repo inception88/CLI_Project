@@ -16,7 +16,7 @@ class CLIProject::CLI
     puts ""
     puts "What product would you like more information on?"
     input2 = gets.strip
-    binding.pry
+
     while input2.to_i > CLIProject::Product.all.size || input2.to_i < 1 do
         print_products(input1)
         puts "Please choose from one of the items listed."
@@ -61,25 +61,19 @@ class CLIProject::CLI
 
   def print_products(input)
     if input == 'sale'
-      puts ""
-      puts "---------- EnterAction Apparel's list of #{input} products ----------"
-      puts ""
-        CLIProject::Product.all.each.with_index(1) do |product, index|
-          if product.on_sale != ""
-            puts "#{index}. #{product.name}"
-          end
-        end
-      elsif input == 'all'
-        puts ""
-        puts "---------- EnterAction Apparel's list of #{input} products ----------"
-        puts ""
-          CLIProject::Product.all.each.with_index(1) do |product, index|
-            puts "#{index}. #{product.name}"
-          end
-      else
-        puts 'Not a valid input. Please choose "all" or "sale".'
-        start
-     end
+      print_selection(CLIProject::Product.find_by_sale, input)
+    elsif input == 'all'
+      print_selection(CLIProject::Product.all, input)
+    else
+      puts 'Not a valid input. Please choose "all" or "sale".'
+      start
+    end
   end
 
+  def print_selection(selection, input)
+    puts ""
+    puts "---------- EnterAction Apparel's list of #{input} products ----------"
+    puts ""
+    selection.each.with_index(1) { |product, index| puts "#{index}. #{product.name}" }
+  end
 end

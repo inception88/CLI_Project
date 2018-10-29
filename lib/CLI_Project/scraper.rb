@@ -9,9 +9,7 @@ class CLIProject::Scraper
   end
 
   def self.make_products
-    self.scrape_products_index.each do |product|
-      self.new_from_index_page(product)
-    end
+    self.scrape_products_index.each { |product| self.new_from_index_page(product) }
   end
 
   def self.new_from_index_page(product)

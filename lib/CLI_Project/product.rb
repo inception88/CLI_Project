@@ -18,4 +18,8 @@ class CLIProject::Product
   def self.find(id)
     self.all[id-1]
   end
+
+  def self.find_by_sale
+    @@all.select {|product| product.on_sale != ""}
+  end
 end
